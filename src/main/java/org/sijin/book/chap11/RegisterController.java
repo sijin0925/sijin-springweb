@@ -20,12 +20,11 @@ public class RegisterController {
 	MemberDao memberDao;
 
 	static final Logger logger = LogManager.getLogger();
-
+	
 	@RequestMapping("/main")
 	public String main() {
 		return "main";
-	}
-
+	}	
 	/**
 	 * p.271 [리스트 11.5] handleStep1()
 	 */
