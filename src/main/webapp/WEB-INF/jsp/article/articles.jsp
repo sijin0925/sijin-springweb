@@ -7,6 +7,8 @@
 <title>게시판 목록</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/jsp/header.jsp"%>
+	<h2>게시글 목록</h2>
 	<p>전체 ${totalCount }건</p>
 	<form action="./app/article/articles">
 		<input type="number" name="page" value="${param.page }" placeholder="페이지"

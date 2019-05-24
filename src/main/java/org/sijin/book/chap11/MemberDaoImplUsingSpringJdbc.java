@@ -19,6 +19,9 @@ public class MemberDaoImplUsingSpringJdbc implements MemberDao {
 	
 	static final String SELECT_BY_LOGIN = "SELECT memberId, email, password, name FROM member WHERE (email,password) = (?,sha2(?,256))";
 	
+	static final String CHANGE_PASSWORD = "UPDATE member SET password=sha2(?,256) WHERE (memberId, password)=(?, sha2(?,256))";
+
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	final RowMapper<Member> memberRowMapper = new BeanPropertyRowMapper<>(Member.class);
@@ -59,6 +62,11 @@ public class MemberDaoImplUsingSpringJdbc implements MemberDao {
 		return jdbcTemplate.queryForObject(SELECT_BY_LOGIN, memberRowMapper,
 				email, password);
 }
+
+	@Override
+	public int changePassword(String memberId, String currentPassword,	String newPassword) {
+		return jdbcTemplate.update(CHANGE_PASSWORD, newPassword, memberId,currentPassword);
+	}
 	
 
 }

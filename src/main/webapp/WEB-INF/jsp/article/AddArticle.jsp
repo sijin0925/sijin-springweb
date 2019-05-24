@@ -5,8 +5,9 @@
 <title>글쓰기</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 	<h1>글쓰기</h1>
-	<form action="./app/register/EndAddAticle" method="post">
+	<form action="./app/article/EndAddAticle" method="post">
 			글제목:<br> <input type="text" name="title" value="${param.title }">
 			
 		<p>

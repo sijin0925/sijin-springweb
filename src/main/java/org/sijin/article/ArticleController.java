@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ArticleController {
@@ -23,12 +24,7 @@ public class ArticleController {
 
 	
 	@PostMapping("/article/EndAddAticle")
-	public String articleAdd(Article article,HttpSession session) {
-		Object memberObj = session.getAttribute("MEMBER");
-		if(memberObj == null)
-			return "redirect:/loginForm";
-		
-		Member member = (Member) memberObj;
+	public String articleAdd(Article article,@SessionAttribute("MEMBER") Member member) {
 		article.setUserId(member.getMemberId());
 		article.setName(member.getName());
 		articleDao.addArticle(article);
@@ -43,16 +39,12 @@ public class ArticleController {
 	
 	@GetMapping("/article/AddArticle")
 	public String AddArticle(HttpSession session) {
-		Object memberObj = session.getAttribute("MEMBER");
-		if (memberObj == null)
-			return "redirect:/app/loginForm";
 		return "article/AddArticle";
 		}
 	
 	@GetMapping("/article/articles")
 	public String articles(
-			@RequestParam(value = "page", defaultValue = "1") int page,
-			Model model) {
+			@RequestParam(value = "page", defaultValue = "1") int page,	Model model) {
 
 		// 페이지 당 가져오는 행의 수
 		final int COUNT = 100;
@@ -67,5 +59,15 @@ public class ArticleController {
 		model.addAttribute("articles", aritcleList);
 		return "article/articles";
 	}
+	
+	@GetMapping("/article/updateArticle")
+	public String updateArticle() {
+		return "article/updateArticle";
+	}
+	
+	@GetMapping("/article/deleteArticle")
+	public String deleteArticle(HttpSession session) {
+		return "article/deleteArticle";
+		}
 	
 }

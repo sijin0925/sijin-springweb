@@ -11,6 +11,11 @@ public interface ArticleDao {
 	Article getArticle(String articleId);
 	
 	int countAll();
+	
+
+	int updateArticle(Article article);
+
+	void deleteArticle(String articleId);
 
 }
 
