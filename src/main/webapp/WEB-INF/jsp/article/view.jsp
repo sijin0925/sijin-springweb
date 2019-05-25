@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html> 
 <head> 
@@ -11,7 +12,6 @@
 <td>글번호</td><td> ${article.articleId}
 </td>
 </tr>
-
 <tr>
 <td>글제목 </td><td> ${article.title}
 </td>

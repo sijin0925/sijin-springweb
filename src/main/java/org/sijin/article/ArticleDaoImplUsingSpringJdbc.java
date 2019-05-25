@@ -14,7 +14,7 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 	//목록 조회
 	static final String LIST_ARTICLES = "SELECT articleId, title, name, cdate FROM article ORDER BY articleId desc LIMIT ?,?";
 	//상세 조회
-	static final String GET_ARTICLE = "SELECT articleId, title, content, name, cdate FROM article WHERE articleId=?";
+	static final String GET_ARTICLE = "SELECT articleId, userId, title, content, name, cdate FROM article WHERE articleId=?";
 	//글 쓰기
 	static final String ADD_ARTICLE = "INSERT INTO article(title, content, userId, name) VALUES (?,?,?,?)";
 	//글 목록 넘기기

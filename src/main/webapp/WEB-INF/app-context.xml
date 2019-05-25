@@ -24,6 +24,8 @@
 			<mvc:mapping path="/article/EndAddAticle" />
 			<mvc:mapping path="/article/updateArticle" />
 			<mvc:mapping path="/article/deleteArticle" />
+			<mvc:mapping path="/article/view" />
+			<mvc:mapping path="/article/update" />
 			<bean class="org.sijin.book.chap13.AuthCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
