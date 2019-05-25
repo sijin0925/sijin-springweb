@@ -29,7 +29,7 @@
 		<tbody>
 			<c:forEach var="member" items="${members}">
 				<tr>
-					<td>${member.memberId }</td>
+					<td>${member.memberId}</td>
 					<td>${member.email }</td>
 					<td>${member.name }</td>
 					<td>${member.cdate }</td>

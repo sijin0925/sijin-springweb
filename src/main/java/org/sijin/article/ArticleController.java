@@ -77,15 +77,15 @@ public class ArticleController {
 	}
 	
 	@PostMapping("/article/update")
-	public String update(Article article,@SessionAttribute("MEMBER") Member member){
+	public String update(Article article,
+						@SessionAttribute("MEMBER") Member member){
 			articleDao.updateArticle(article);
 			return "redirect:/app/article/articles";
 	}
 	
 	@GetMapping("/article/deleteArticle")
 	public String deleteArticle(@RequestParam("articleId") String articleId,
-			@SessionAttribute("MEMBER") Member member)
-	{
+						@SessionAttribute("MEMBER") Member member){
 			Article article = articleDao.getArticle(articleId);
 			if(!member.getMemberId().equals(article.getUserId()))
 				return "redirect:/app/article/view?articleId="+articleId;
