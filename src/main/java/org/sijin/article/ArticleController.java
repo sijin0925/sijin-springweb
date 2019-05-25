@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sijin.book.chap11.Member;
-import org.sijin.book.chap11.MemberDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ArticleController {
+	
 	@Autowired
 	ArticleDao articleDao;
 
@@ -89,7 +89,7 @@ public class ArticleController {
 			@SessionAttribute("MEMBER") Member member)
 	{
 			Article article = articleDao.getArticle(articleId);
-			if(!member.getName().equals(article.getName()))
+			if(!member.getMemberId().equals(article.getUserId()))
 				return "redirect:/app/article/view?articleId="+articleId;
 			
 			articleDao.deleteArticle(article);
