@@ -79,7 +79,7 @@ public class ArticleController {
 	@PostMapping("/article/update")
 	public String update(Article article,@RequestParam("articleId") String articleId,
 						@SessionAttribute("MEMBER") Member member){
-			article.setArticleId(articleId);
+		
 			articleDao.updateArticle(article);
 			return "redirect:/app/article/articles";
 	}
