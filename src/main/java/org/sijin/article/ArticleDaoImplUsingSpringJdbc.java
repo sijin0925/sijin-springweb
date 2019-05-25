@@ -56,15 +56,15 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 	}
 	//글 수정
 	@Override
-	public int updateArticle(Article article) {
+	public void updateArticle(Article article) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(),article.getContent(), article.getArticleId());
+		jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(),article.getContent(),article.getArticleId());
 	}
-	//글 삭제
 	@Override
-	public void deleteArticle(String articleId) {
+	public void deleteArticle(Article article) {
 		// TODO Auto-generated method stub
-		jdbcTemplate.update(DELETE_ARTICLE, articleId);
+		jdbcTemplate.update(DELETE_ARTICLE, article.getArticleId());
+		
 	}
 
 }

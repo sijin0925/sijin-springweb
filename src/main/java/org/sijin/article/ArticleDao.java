@@ -10,12 +10,11 @@ public interface ArticleDao {
 			
 	Article getArticle(String articleId);
 	
-	int countAll();
+	void updateArticle(Article article);
 	
-
-	int updateArticle(Article article);
-
-	void deleteArticle(String articleId);
+	void deleteArticle(Article article);
+	
+	int countAll();
 
 }
 

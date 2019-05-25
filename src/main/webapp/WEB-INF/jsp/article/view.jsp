@@ -15,7 +15,9 @@
 <tr>
 <td>글제목 </td><td> ${article.title}
 </td>
+
 </tr>
+
 
 <tr>
 <td>글쓴이 </td><td> ${article.name}
@@ -29,16 +31,10 @@
 <td>작설일자 </td><td> ${article.cdate}
 </td>
 </tr>
-<tr>
-<td>
-<a href="./app/article/articles">[글 목록 이동]</a>
-</td>
-<td>
-<a href="./app/article/articles">[글 수정]</a>
-<a href="./app/article/deleteArticle">[글 삭제]</a>
-</td>
-</tr>
 </table>
+<a href="./app/article/articles"><button type="submit">글목록</button></a>
+<a href="./app/article/updateArticle?articleId=${article.articleId}"><button type="submit">글수정</button></a>
+<a href="./app/article/deleteArticle?articleId=${article.articleId}"><button type="submit">글삭제</button></a>
 </body> 
 </head> 
 </html>

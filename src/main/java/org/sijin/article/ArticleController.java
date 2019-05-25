@@ -2,8 +2,6 @@ package org.sijin.article;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sijin.book.chap11.Member;
@@ -38,7 +36,7 @@ public class ArticleController {
     }
 	
 	@GetMapping("/article/AddArticle")
-	public String AddArticle(HttpSession session) {
+	public String AddArticle(Article article,@SessionAttribute("MEMBER") Member member) {
 		return "article/AddArticle";
 		}
 	
@@ -61,13 +59,35 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/article/updateArticle")
-	public String updateArticle() {
-		return "article/updateArticle";
+	public String updateArticle(@RequestParam("articleId") String articleId,
+			Model model,
+			@SessionAttribute("MEMBER") Member member){
+			
+			Article article = articleDao.getArticle(articleId);
+			if(!member.getName().equals(article.getName()))
+				return "redirect:/app/article/view?articleId="+articleId;
+			
+			model.addAttribute("article",article);
+			return "article/updateArticle";
+	}
+	
+	@PostMapping("/article/update")
+	public String update(Article article,@RequestParam("articleId") String articleId) {
+		article.setArticleId(articleId);
+			articleDao.updateArticle(article);
+			return "redirect:/app/article/articles";
 	}
 	
 	@GetMapping("/article/deleteArticle")
-	public String deleteArticle(HttpSession session) {
-		return "article/deleteArticle";
-		}
-	
+	public String deleteArticle(@RequestParam("articleId") String articleId,
+			@SessionAttribute("MEMBER") Member member)
+	{
+			Article article = articleDao.getArticle(articleId);
+			if(!member.getName().equals(article.getName()))
+				return "redirect:/app/article/view?articleId="+articleId;
+			
+			articleDao.deleteArticle(article);
+			return "redirect:/app/article/articles";
+	}
+		
 }
