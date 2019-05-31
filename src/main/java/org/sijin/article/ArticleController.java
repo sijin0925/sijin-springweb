@@ -34,7 +34,7 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/article/view")
-    public void view(@RequestParam("articleId") String articleId, Model model,@SessionAttribute("MEMBER") Member member) {
+    public void view(@RequestParam("articleId") String articleId, Model model) {
         Article article = articleDao.getArticle(articleId);
         model.addAttribute("article", article);
     }

@@ -22,7 +22,7 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 	//글 수정
 	static final String UPDATE_ARTICLE = "UPDATE article SET title=?, content=? WHERE articleId=?";
 	//글 삭제
-	static final String DELETE_ARTICLE = "DELETE FROM article WHERE articleId=?";
+	static final String DELETE_ARTICLE = "delete from article where (articleId, userId) = (?,?)";
 	
 	
 	@Autowired
@@ -58,12 +58,13 @@ public class ArticleDaoImplUsingSpringJdbc implements ArticleDao {
 	@Override
 	public void updateArticle(Article article) {
 		// TODO Auto-generated method stub
-		jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(),article.getContent(),article.getArticleId());
+		jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(),
+				article.getContent(), article.getArticleId());
 	}
 	@Override
-	public void deleteArticle(Article article) {
+	public int deleteArticle(Article article) {
 		// TODO Auto-generated method stub
-		jdbcTemplate.update(DELETE_ARTICLE, article.getArticleId());
+		return jdbcTemplate.update(DELETE_ARTICLE, article.getArticleId(),article.getUserId());
 		
 	}
 

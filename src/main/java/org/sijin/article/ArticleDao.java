@@ -12,7 +12,7 @@ public interface ArticleDao {
 	
 	void updateArticle(Article article);
 	
-	void deleteArticle(Article article);
+	int deleteArticle(Article article);
 	
 	int countAll();
 

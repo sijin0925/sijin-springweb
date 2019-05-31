@@ -4,6 +4,14 @@
 <head> 
 <base href="${pageContext.request.contextPath }/" /> 
 <title>조회</title> 
+<script type="text/javascript">
+	function confirmDelete() {
+		if (confirm("삭제하시겠습니까?"))
+			return true;
+		else
+			return false;
+	}
+</script>
 </head> 
 <body> 
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
@@ -32,10 +40,11 @@
 </td>
 </tr>
 </table>
-<a href="./app/article/articles"><button type="submit">글목록</button></a>
-<a href="./app/article/updateArticle?articleId=${article.articleId}"><button type="submit">글수정</button></a>
-<a href="./app/article/deleteArticle?articleId=${article.articleId}"><button type="submit">글삭제</button></a>
-</body> 
-</head> 
+<a href="./app/article/articles">글목록</a>
+<c:if test="${article.userId == sessionScope.MEMBER.memberId }">
+			<a href="./app/article/updateArticle?articleId=${article.articleId}">글수정</a>
+			<a href="./app/article/deleteArticle?articleId=${article.articleId}"onclick="return confirmDelete();">글삭제</a>
+</c:if>
+</body>
 </html>
 

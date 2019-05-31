@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
 <head>
@@ -13,7 +14,10 @@
 		<p>
 			글내용:<br><textarea name="content">${article.content}</textarea>
 		</p>
-		<button type="submit">수정</button>
+		<p>
+		<button type="submit">등록</button>
+		<button type="button" onclick="history.back();">취소</button>
+		</p>
 	</form>
 </body>
 </html>
