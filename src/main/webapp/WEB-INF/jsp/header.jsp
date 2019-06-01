@@ -7,7 +7,9 @@
 		<c:choose>
 			<c:when test="${!empty sessionScope.MEMBER }">
 				<!-- 로그인 했을 경우 -->
-				<span><a href="./app/member/memberInfo">${MEMBER.name }</a></span> | 
+				<span><a href="./app/member/memberInfo">${MEMBER.name }</a></span> |
+			<span><a href="./app/letter/listReceived">받은편지함</a></span>
+			<span><a href="./app/letter/listSent">보낸편지함</a></span>				 
 			<span><a href="./app/logout">로그아웃</a></span>
 			</c:when>
 			<c:otherwise>
